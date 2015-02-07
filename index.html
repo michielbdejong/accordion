@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="600" height="150"></canvas>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+
+      function drawKey(key, active) {
+        var coords = keys[key];
+        if (!coords) {
+          console.log('WARNING:  key ' + key + ' does not exist');
+        }
+        var centerY = (4 - coords[0]) * (canvas.height / 5);
+        var centerX = (coords[1] + 1) * (canvas.width / 25);
+        var radius = 10;
+
+        context.beginPath();
+        context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = (active ? coords[2] : 'white');
+        context.fill();
+        context.lineWidth = 5;
+        context.strokeStyle = '#003300';
+        context.stroke();
+      }
+
+      //var keys = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+      var keys = {
+         'dAb1': [1, 1, 'green'],
+         'dG1': [1, 3, 'green'],
+         'dB1': [1, 5, 'green'],
+         'dD2': [1, 7, 'green'],
+         'dF2': [1, 9, 'green'],
+         'dA2': [1, 11, 'green'],
+         'dB2': [1, 13, 'green'],
+         'dD3': [1, 15, 'green'],
+         'dF3': [1, 17, 'green'],
+         'dA3': [1, 19, 'green'],
+         'dB3': [1, 21, 'green'],
+         'dC4': [1, 23, 'green'],
+         'dBb1': [2, 2, 'green'],
+         'dC1': [2, 4, 'green'],
+         'dE2': [2, 6, 'green'],
+         'dG2': [2, 8, 'green'],
+         'dBb2': [2, 10, 'green'],
+         'dC3': [2, 12, 'green'],
+         'dE3': [2, 14, 'green'],
+         'dG3': [2, 16, 'green'],
+         'dBb3': [2, 18, 'green'],
+         'dD4': [2, 20, 'green'],
+         'dE4': [2, 22, 'green'],
+         'dDb2': [3, 7, 'green'],
+         'dGb2': [3, 9, 'green'],
+         'dAb2': [3, 11, 'green'],
+         'dDb3': [3, 13, 'green'],
+         'dEb3': [3, 15, 'green'],
+         'dAb3': [3, 17, 'green'],
+         'dDb4': [3, 19, 'green'],
+         'pGb1': [1, 1, 'red'],
+         'pE1': [1, 3, 'red'],
+         'pG1': [1, 5, 'red'],
+         'pC2a': [1, 7, 'red'],
+         'pE2': [1, 9, 'red'],
+         'pG2': [1, 11, 'red'],
+         'pC3a': [1, 13, 'red'],
+         'pE3': [1, 15, 'red'],
+         'pG3': [1, 17, 'red'],
+         'pC4a': [1, 19, 'red'],
+         'pE4': [1, 21, 'red'],
+         'pG4': [1, 23, 'red'],
+         'pF1': [2, 2, 'red'],
+         'pA1': [2, 4, 'red'],
+         'pC2': [2, 6, 'red'],
+         'pF2': [2, 8, 'red'],
+         'pA2': [2, 10, 'red'],
+         'pC3': [2, 12, 'red'],
+         'pF3': [2, 14, 'red'],
+         'pA3': [2, 16, 'red'],
+         'pC4': [2, 18, 'red'],
+         'pF4': [2, 20, 'red'],
+         'pA4': [2, 22, 'red'],
+         'pEb2': [3, 7, 'red'],
+         'pBb2': [3, 9, 'red'],
+         'pGb2': [3, 11, 'red'],
+         'pEb3': [3, 13, 'red'],
+         'pD3': [3, 15, 'red'],
+         'pGb3': [3, 17, 'red'],
+         'pEb4': [3, 19, 'red']
+      };
+      for (var i in keys) {
+        drawKey(i, false);
+      }
+
+      function playSong(song) {
+        var cursor = 0;
+        console.log(cursor, song[cursor]);
+        drawKey(song[cursor], true);
+        var timer = setInterval(function() {
+          drawKey(song[cursor], false);
+          cursor++;
+          if (cursor >= song.length) {
+            console.log('done');
+            clearInterval(timer);
+          } else {
+            console.log(cursor, song[cursor]);
+            drawKey(song[cursor], true);
+          }
+        }, 1000);
+      }
+      playSong(['dA3', 'dG3', 'dA3', 'pA3', 'pG3', 'pA3']);
+
+      //for (var i in push) {
+      //  drawCircle(push[i]);
+      //}
+    </script>
+  </body>
+</html> 
