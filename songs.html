@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <p><canvas id="myCanvas" width="600" height="150"></canvas>
+    <script>
+      var keys = {
+         'C': [
+          [2, 4, 'green'],
+          [2, 6, 'red'],
+          [1, 7, 'red'],
+          [2, 12, 'orange'],
+          [1, 13, 'red'],
+          [1, 23, 'green'],
+          [2, 18, 'red'],
+          [1, 19, 'red']
+         ],
+         'Db': [
+          [3, 7, 'green'],
+          [3, 13, 'green'],
+          [3, 19, 'green']
+         ],
+         'D': [
+          [1, 7, 'green'],
+          [1, 15, 'green'],
+          [3, 15, 'red'],
+          [2, 20, 'green']
+         ],
+         'Eb': [
+          [3, 7, 'red'],
+          [3, 13, 'red'],
+          [3, 15, 'green'],
+          [3, 19, 'red']
+         ],
+         'E': [
+          [1, 3, 'red'],
+          [1, 9, 'red'],
+          [2, 6, 'green'],
+          [1, 15, 'red'],
+          [2, 14, 'green'],
+          [1, 21, 'red'],
+          [2, 22, 'green']
+         ],
+         'F': [
+          [2, 2, 'red'],
+          [1, 9, 'green'],
+          [2, 8, 'red'],
+          [1, 17, 'green'],
+          [2, 14, 'red'],
+          [2, 20, 'red']
+         ],
+         'Gb': [
+          [1, 1, 'red'],
+          [3, 11, 'red'],
+          [3, 9, 'green'],
+          [3, 17, 'red']
+         ],
+         'G': [
+          [1, 3, 'green'],
+          [1, 5, 'red'],
+          [1, 11, 'red'],
+          [2, 8, 'green'],
+          [1, 17, 'red'],
+          [2, 16, 'green'],
+          [1, 23, 'red']
+         ],
+         'Ab': [
+          [1, 1, 'green'],
+          [3, 11, 'green'],
+          [3, 17, 'green']
+         ],
+         'A': [
+          [2, 4, 'red'],
+          [1, 11, 'green'],
+          [2, 10, 'red'],
+          [1, 19, 'green'],
+          [2, 16, 'red'],
+          [2, 22, 'red']
+         ],
+         'Bb': [
+          [2, 2, 'green'],
+          [2, 10, 'green']
+         ],
+         'B': [
+          [1, 5, 'green'],
+          [1, 13, 'green'],
+          [1, 21, 'green']
+         ],
+         'silence': []
+      };
+      var context = {};
+      var canvas = document.getElementById('myCanvas');
+      context = canvas.getContext('2d');
+      context.beginPath();
+      context.lineTo(canvas.width, 0);
+      context.lineTo(canvas.width, canvas.height);
+      context.lineTo(0, canvas.height);
+      context.lineTo(0, 0);
+      context.stroke();
+
+      function drawKey(coords) {
+        if (!coords) {
+          console.log('WARNING:  key ' + key + ' does not exist');
+        }
+        var centerY = (4 - coords[0]) * (canvas.height / 5);
+        var centerX = (coords[1] + 1) * (canvas.width / 25);
+        var radius = 10;
+
+        context.beginPath();
+        context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = coords[2];
+        context.fill();
+        context.lineWidth = 5;
+        context.strokeStyle = '#003300';
+        context.stroke();
+      }
+
+      function drawOptions(key) {
+        var j;
+        for (j=1; j<=23; j+=2) {
+          drawKey([1, j, 'white']);
+        }
+        for (j=2; j<=22; j+=2) {
+          drawKey([2, j, 'white']);
+        }
+        for (j=7; j<=19; j+=2) {
+          drawKey([3, j, 'white']);
+        }
+        for (j=0; j < keys[key].length; j++) {
+          drawKey(keys[key][j]);
+        }
+      }
+      function playSong(song) {
+        var cursor = 0, option;
+        console.log(cursor, song[cursor]);
+        drawOptions(song[cursor], true);
+        var timer = setInterval(function() {
+          cursor++;
+          if (cursor >= song.length) {
+            drawOptions('silence');
+            console.log('done');
+            clearInterval(timer);
+          } else {
+            console.log(cursor, song[cursor]);
+            drawOptions(song[cursor]);
+          }
+        }, 1000);
+      }
+      playSong([
+        'B', 'A', 'Gb', 'B',
+        'D', 'Gb', 'A', 'B',
+        'G', 'Gb', 'D', 'G',
+        'D', 'Gb', 'G', 'E',
+        'D', 'B', 'G', 'E',
+        'D', 'B', 'G',
+        'A', 'D', 'Db', 'B']);
+    </script>
+  </body>
+</html> 

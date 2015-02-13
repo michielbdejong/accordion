@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <p><canvas id="myCanvas1" width="400" height="100"></canvas>
+    <canvas id="myCanvas2" width="400" height="100"></canvas>
+    <canvas id="myCanvas3" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas4" width="400" height="100"></canvas>
+    <canvas id="myCanvas5" width="400" height="100"></canvas>
+    <canvas id="myCanvas6" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas7" width="400" height="100"></canvas>
+    <canvas id="myCanvas8" width="400" height="100"></canvas>
+    <canvas id="myCanvas9" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas10" width="400" height="100"></canvas>
+    <canvas id="myCanvas11" width="400" height="100"></canvas>
+    <canvas id="myCanvas12" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas13" width="400" height="100"></canvas>
+    <canvas id="myCanvas14" width="400" height="100"></canvas>
+    <canvas id="myCanvas15" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas16" width="400" height="100"></canvas>
+    <canvas id="myCanvas17" width="400" height="100"></canvas>
+    <canvas id="myCanvas18" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas19" width="400" height="100"></canvas>
+    <canvas id="myCanvas20" width="400" height="100"></canvas>
+    <canvas id="myCanvas21" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas22" width="400" height="100"></canvas>
+    <canvas id="myCanvas23" width="400" height="100"></canvas>
+    <canvas id="myCanvas24" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas25" width="400" height="100"></canvas>
+    <canvas id="myCanvas26" width="400" height="100"></canvas>
+    <canvas id="myCanvas27" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas28" width="400" height="100"></canvas>
+    <canvas id="myCanvas29" width="400" height="100"></canvas>
+    <canvas id="myCanvas30" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas31" width="400" height="100"></canvas>
+    <canvas id="myCanvas32" width="400" height="100"></canvas>
+    <canvas id="myCanvas33" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas34" width="400" height="100"></canvas>
+    <canvas id="myCanvas35" width="400" height="100"></canvas>
+    <canvas id="myCanvas36" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas37" width="400" height="100"></canvas>
+    <canvas id="myCanvas38" width="400" height="100"></canvas>
+    <canvas id="myCanvas39" width="400" height="100"></canvas></p>
+
+    <p><canvas id="myCanvas40" width="400" height="100"></canvas>
+    <canvas id="myCanvas41" width="400" height="100"></canvas>
+    <canvas id="myCanvas42" width="400" height="100"></canvas></p>
+
+    <script>
+      var keys = {
+         'C': [
+          [2, 4, 'green'],
+          [2, 6, 'red'],
+          [1, 7, 'red'],
+          [2, 12, 'orange'],
+          [1, 13, 'red'],
+          [1, 23, 'green'],
+          [2, 18, 'red'],
+          [1, 19, 'red']
+         ],
+         'Db': [
+          [3, 7, 'green'],
+          [3, 13, 'green'],
+          [3, 19, 'green']
+         ],
+         'D': [
+          [1, 7, 'green'],
+          [1, 15, 'green'],
+          [3, 15, 'red'],
+          [2, 20, 'green']
+         ],
+         'Eb': [
+          [3, 7, 'red'],
+          [3, 13, 'red'],
+          [3, 15, 'green'],
+          [3, 19, 'red']
+         ],
+         'E': [
+          [1, 3, 'red'],
+          [1, 9, 'red'],
+          [2, 6, 'green'],
+          [1, 15, 'red'],
+          [2, 14, 'green'],
+          [1, 21, 'red'],
+          [2, 22, 'green']
+         ],
+         'F': [
+          [2, 2, 'red'],
+          [1, 9, 'green'],
+          [2, 8, 'red'],
+          [1, 17, 'green'],
+          [2, 14, 'red'],
+          [2, 20, 'red']
+         ],
+         'Gb': [
+          [1, 1, 'red'],
+          [3, 11, 'red'],
+          [3, 9, 'green'],
+          [3, 17, 'red']
+         ],
+         'G': [
+          [1, 3, 'green'],
+          [1, 5, 'red'],
+          [1, 11, 'red'],
+          [2, 8, 'green'],
+          [1, 17, 'red'],
+          [2, 16, 'green'],
+          [1, 23, 'red']
+         ],
+         'Ab': [
+          [1, 1, 'green'],
+          [3, 11, 'green'],
+          [3, 17, 'green']
+         ],
+         'A': [
+          [2, 4, 'red'],
+          [1, 11, 'green'],
+          [2, 10, 'red'],
+          [1, 19, 'green'],
+          [2, 16, 'red'],
+          [2, 22, 'red']
+         ],
+         'Bb': [
+          [2, 2, 'green'],
+          [2, 10, 'green']
+         ],
+         'B': [
+          [1, 5, 'green'],
+          [1, 13, 'green'],
+          [1, 21, 'green']
+         ]
+      };
+      var context = {};
+      for (var i = 1; i<=42; i++) {
+        var canvas = document.getElementById('myCanvas'+i);
+        context[i] = canvas.getContext('2d');
+        context[i].beginPath();
+        context[i].lineTo(canvas.width, 0);
+        context[i].lineTo(canvas.width, canvas.height);
+        context[i].lineTo(0, canvas.height);
+        context[i].lineTo(0, 0);
+        context[i].stroke();
+      }
+
+      function drawKey(diagram, coords) {
+        if (!coords) {
+          console.log('WARNING:  key ' + key + ' does not exist');
+        }
+        var centerY = (4 - coords[0]) * (canvas.height / 5);
+        var centerX = (coords[1] + 1) * (canvas.width / 25);
+        var radius = 10;
+
+        context[diagram].beginPath();
+        context[diagram].arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        context[diagram].fillStyle = coords[2];
+        context[diagram].fill();
+        context[diagram].lineWidth = 5;
+        context[diagram].strokeStyle = '#003300';
+        context[diagram].stroke();
+      }
+
+      var j;
+      for (var i=1; i<=42; i++) {
+        for (j=1; j<=23; j+=2) {
+          drawKey(i, [1, j, 'white']);
+        }
+        for (j=2; j<=22; j+=2) {
+          drawKey(i, [2, j, 'white']);
+        }
+        for (j=7; j<=19; j+=2) {
+          drawKey(i, [3, j, 'white']);
+        }
+        drawKey(i, [2, 12, 'orange']);
+      }
+    </script>
+  </body>
+</html> 
